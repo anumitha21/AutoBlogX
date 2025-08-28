@@ -30,3 +30,10 @@ class graphbuilder:
             self.buildgraph()
 
         return self.graph.compile()
+
+## below code is for langsmith langraph studio
+llm=groqllm().getllm()
+
+##get the graph
+graph_builder=graphbuilder(llm)
+graph = graph_builder.buildgraph().compile()
