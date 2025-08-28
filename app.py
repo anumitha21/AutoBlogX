@@ -18,8 +18,8 @@ async def create_blog(request: Request):
     topic = data.get("topic","")
 
     ##get the llm object
-    groqllm = groqllm()
-    llm=groqllm.getllm()
+    groq_llm = groqllm()
+    llm=groq_llm.getllm()
 
     ## get the graph
 
