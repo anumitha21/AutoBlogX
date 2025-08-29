@@ -33,7 +33,7 @@ class graphbuilder:
         self.graph.add_node("title", self.blog_obj.title_creation)
         self.graph.add_node("creation", self.blog_obj.content_gen)
         self.graph.add_node("route",self.blog_obj.route)
-        self.graph.add_node("malayalam_trans",lambda state: self.blog_obj.translation({**state, "current_language": "malayalam"}))
+        self.graph.add_node("hindi_trans",lambda state: self.blog_obj.translation({**state, "current_language": "hindi"}))
         self.graph.add_node("french_trans",lambda state: self.blog_obj.translation({**state, "current_language": "french"}))
 
         #edges
@@ -45,12 +45,12 @@ class graphbuilder:
             "route",
             self.blog_obj.route_decision,
             {
-                "hindi"  : "malayalam_trans",
+                "hindi"  : "hindi_trans",
                 "french" : "french_trans"
             }
 
         )
-        self.graph.add_edge("malayalam_trans", END)
+        self.graph.add_edge("hindi_trans", END)
         self.graph.add_edge("french_trans", END)
 
         return self.graph
@@ -69,4 +69,4 @@ llm=groqllm().getllm()
 
 ##get the graph
 graph_builder=graphbuilder(llm)
-graph = graph_builder.buildgraph().compile()
+graph = graph_builder.lang_graph().compile()

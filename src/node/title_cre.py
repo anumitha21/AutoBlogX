@@ -80,8 +80,8 @@ class blognode:
         """
         Route the content to the respective translation function.
         """
-        if state["current_language"] == "malayalam":
-            return "malayalam"
+        if state["current_language"] == "hindi":
+            return " hindi"
         elif state["current_language"] == "french": 
             return "french"
         else:
