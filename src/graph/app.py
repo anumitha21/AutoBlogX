@@ -16,8 +16,6 @@ os.environ["LANGSMITH_API_KEY"]="lsv2_pt_f1cf7e90621648589baba5b6f5f8b536_b4579f
 async def create_blog(request: Request):
     data = await request.json()
     topic = data.get("topic","")
-    language = data.get("language", '')
-    print(language)
 
     ##get the llm object
     groq_llm = groqllm()
@@ -26,12 +24,8 @@ async def create_blog(request: Request):
     ## get the graph
 
     graph_builder=graphbuilder(llm)
-    if topic and language:
-        if topic and language:
-           graph=graph_builder.setup_graph(usecase="language")
-        state=graph.invoke({"topic":topic,"current_language":language.lower()})
 
-    elif topic:
+    if topic:
         graph=graph_builder.setup_graph(usecase="topic") #builds a workflow or processing pipeline.
         state = graph.invoke({"topic":topic})
 
