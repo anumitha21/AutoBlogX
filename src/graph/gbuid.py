@@ -24,10 +24,43 @@ class graphbuilder:
         self.graph.add_edge("creation", END)
 
         return self.graph
+    def lang_graph(self):
+        """
+        build a graph to generate blogs based on topic and language ..make it intresting to read 
+        """
+        self.blog_obj = blognode(self.llm)
+        #nodes
+        self.graph.add_node("title", self.blog_obj.title_creation)
+        self.graph.add_node("creation", self.blog_obj.content_gen)
+        self.graph.add_node("route",)
+        self.graph.add_node("hindi_trans",)
+        self.graph.add_node("french_trans",)
+
+        #edges
+        self.graph.add_edge(START, "title")
+        self.graph.add_edge("title", "creation")
+        self.graph.add_edge("creation", "route")
+        #conditonal edges
+        self.graph.add_conditional_edges(
+            "route",
+            self.blog_obj.route_decisison,
+            {
+                "hindi"  : "hindi_trans",
+                "french" : "french_trans"
+            }
+
+        )
+        self.graph.add_edge("hindi_trans", END)
+        self.graph.add_edge("french_trans", END)
+
+        return self.graph
     
     def setup_graph(self, usecase):
         if usecase == "topic":
             self.buildgraph()
+        
+        if usecase=="language":
+            self.lang_graph()
 
         return self.graph.compile()
 
