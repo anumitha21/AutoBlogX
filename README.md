@@ -3,7 +3,7 @@
 A powerful, production-ready FastAPI service for generating engaging blog posts. This project leverages LangGraph for stateful workflows and Groq's high-performance LLMs to deliver AI-generated blogs with multi-language support out of the box.
 - Blog Generation API with LangGraph + Groq LLM
   
-🔗  Features
+## 🔗  Features
 
 AI-Powered Blog Generation – Automatically generate high-quality blog posts with titles and well-structured content.
 
@@ -19,7 +19,7 @@ LangGraph Workflows – State-based workflow management for better control and m
 
  Markdown-Formatted Output – Ready-to-publish content for blogs or CMS systems.
 
-📦 Prerequisites
+## 📦 Prerequisites
 
 Python 3.8+
 
@@ -27,7 +27,7 @@ Groq API Key – Get yours from Groq Console
 
 (Optional) LangSmith API Key – For observability and tracing
 
-⚙️ Installation & Setup
+## ⚙️ Installation & Setup
 
 Clone the repository
 
@@ -51,7 +51,8 @@ Install extra tools for development
 
 uv add langgraph-cli[inmem]
 
-📂 Project Structure
+## 📂 Project Structure
+
 blog-generation/
 ├── app.py                 # FastAPI entry point
 ├── main.py                # Application startup logic
@@ -70,7 +71,7 @@ blog-generation/
 │       └── state.py       # TypedDict state definitions
 └── README.md
 
-🚀 Running the API
+##🚀 Running the API
 
 Start the FastAPI server locally:
 
@@ -79,7 +80,8 @@ python app.py
 
 Server runs at: http://localhost:8000
 
-📡 API Usage
+##📡 API Usage
+
 POST /blogs
 
 Generate a blog post for a given topic and optional target language.
@@ -101,7 +103,7 @@ Response:
   }
 }
 
-🧪 Testing with Postman
+## 🧪 Testing with Postman
 
 Create a new POST request
 http://localhost:8000/blogs
@@ -121,7 +123,7 @@ Body (raw JSON):
 
 Send request → You’ll receive a translated, AI-generated blog.
 
-🖼️ Visualize Workflows with LangGraph Studio
+## 🖼️ Visualize Workflows with LangGraph Studio
 
 Install CLI:
 
@@ -133,7 +135,7 @@ Run:
 langgraph dev
 
 
-🏗️ Architecture Overview
+## 🏗️ Architecture Overview
 Workflow Nodes
 
 Title Creation → Generates engaging titles
@@ -154,7 +156,7 @@ blog (title & content)
 
 current_language
 
-🔧 Customization
+## 🔧 Customization
 
 Add a New Language
 
@@ -168,7 +170,7 @@ self.graph.add_node(
 
 Then update routing logic in title_cre.py.
 
-📖 API Documentation
+## 📖 API Documentation
 
 FastAPI provides auto-generated docs:
 
@@ -176,10 +178,11 @@ Swagger UI: http://localhost:8000/docs
 
 ReDoc: http://localhost:8000/redoc
 
-📜 License
+## 📜 License
 
 This project is licensed under MIT License – see the LICENSE file for details.
 
-🤝 Contributions
-Contributions are welcome 🎉! Feel free to fork, open issues, and submit PRs 🚀
+## 🤝 Contributions
+  Contributions are welcome 🎉! Feel free to fork, open issues, and submit PRs 🚀
+
 
