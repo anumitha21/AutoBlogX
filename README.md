@@ -4,43 +4,43 @@
 
 ## 🔗 Features
  
- AI-Powered Blog Generation – Automatically generate high-quality blog posts with titles and well-structured content.
+  AI-Powered Blog Generation – Automatically generate high-quality blog posts with titles and well-structured content.
 
- Multi-Language Support – Built-in translation to Hindi and French (easily extendable to other languages).
+  Multi-Language Support – Built-in translation to Hindi and French (easily extendable to other languages).
 
- LangGraph Workflows – State-based workflow management for modular and scalable pipelines.
+  LangGraph Workflows – State-based workflow management for modular and scalable pipelines.
 
- RESTful API – Clean, well-documented FastAPI endpoints for seamless integration.
+  RESTful API – Clean, well-documented FastAPI endpoints for seamless integration.
 
- Postman-Ready – Standardized JSON responses for quick testing and automation.
+  Postman-Ready – Standardized JSON responses for quick testing and automation.
 
- Visual Debugging – LangGraph Studio integration for workflow visualization and debugging.
+  Visual Debugging – LangGraph Studio integration for workflow visualization and debugging.
 
- Markdown Output – Ready-to-publish content for blogs or CMS platforms.
+  Markdown Output – Ready-to-publish content for blogs or CMS platforms.
 
 ## 📦 Prerequisites
 
-Python 3.8+
+ Python 3.8+
 
-Groq API Key – Get yours here
+ Groq API Key – Get yours here
 
-(Optional) LangSmith API Key – For observability and tracing
+ (Optional) LangSmith API Key – For observability and tracing
 
 ## ⚙️ Installation & Setup
 
-Clone the repository
+ Clone the repository
 
-git clone <your-repo-url>
-cd blog-generation
+ git clone <your-repo-url>
+ cd blog-generation
 
 
 Install dependencies
 
-uv add -r requirements.txt
+ uv add -r requirements.txt
 
 
 Set environment variables
-Create a .env file in the root directory:
+ Create a .env file in the root directory:
 
 GROQ_API_KEY=your_groq_api_key_here
 LANGSMITH_API_KEY=your_langsmith_api_key_here
@@ -80,21 +80,21 @@ python app.py
 Server runs at: http://localhost:8000
 
 ## 📡 API Usage
-POST /blogs
+ POST /blogs
 
-Generate a blog post for a given topic and optional target language.
+ Generate a blog post for a given topic and optional target language.
 
-Request:
+ Request:
 
-{
+ {
   "topic": "Artificial Intelligence in Healthcare",
   "language": "hindi"   // optional: "hindi", "french", or omit for English
-}
+ }
 
 
 Response:
 
-{
+ {
   "data": {
     "blog": {
       "title": "The Future of Healthcare: How AI is Revolutionizing Patient Care",
@@ -102,7 +102,7 @@ Response:
       "current_language": "hindi"
     }
   }
-}
+ }
 
 ## 🧪 Testing with Postman
 
@@ -179,5 +179,6 @@ Licensed under the MIT License – see the LICENSE file for details.
 ## 🤝 Contributions
 
 Contributions are welcome 🎉 — fork the repo, make your changes, and open a PR 🚀
+
 
 
