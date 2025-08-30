@@ -1,100 +1,69 @@
 # 📝 AutoBlogX
 
- A production-ready FastAPI service for generating engaging blog posts. AutoBlogX uses LangGraph for stateful workflows and Groq's high-performance LLMs to create AI-generated blogs with multi-language support out of the box.
+> ⚡️ A powerful **production-ready FastAPI service** for generating engaging blog posts.  
+> Built with **LangGraph workflows** and **Groq's high-performance LLMs**, AutoBlogX delivers AI-generated blogs with **multi-language support** out of the box.
 
-## 🔗 Features
- 
-  AI-Powered Blog Generation – Automatically generate high-quality blog posts with titles and well-structured content.
+---
 
-  Multi-Language Support – Built-in translation to Hindi and French (easily extendable to other languages).
+## ✨ Features
 
-  LangGraph Workflows – State-based workflow management for modular and scalable pipelines.
+- **AI-Powered Blog Generation** – Automatically generate high-quality blog posts with titles and well-structured content  
+- **Multi-Language Support** – Built-in translation to Hindi and French (easily extendable to other languages)  
+- **LangGraph Workflows** – State-based workflow management for better control and modularity  
+- **RESTful API** – Clean, documented FastAPI endpoints for smooth integration  
+- **Postman-Ready** – Standardized JSON responses for quick testing and automation  
+- **Visual Debugging** – LangGraph Studio integration for workflow visualization and debugging  
+- **Markdown-Formatted Output** – Ready-to-publish content for blogs or CMS systems  
 
-  RESTful API – Clean, well-documented FastAPI endpoints for seamless integration.
+---
 
-  Postman-Ready – Standardized JSON responses for quick testing and automation.
+## 🛠️ Prerequisites
 
-  Visual Debugging – LangGraph Studio integration for workflow visualization and debugging.
+- Python **3.8+**  
+- Groq API Key – [Get from Groq Console](https://console.groq.com/)  
+- (Optional) LangSmith API Key – For observability and tracing  
 
-  Markdown Output – Ready-to-publish content for blogs or CMS platforms.
+---
 
-## 📦 Prerequisites
+## ⚡ Installation
 
- Python 3.8+
+```bash
+# Clone the repository
+git clone <your-repo-url>
+cd blog-generation
 
- Groq API Key – Get yours here
+# Install dependencies
+uv add -r requirements.txt
 
- (Optional) LangSmith API Key – For observability and tracing
-
-## ⚙️ Installation & Setup
-
- Clone the repository
-
- git clone <your-repo-url>
- cd blog-generation
-
-
-Install dependencies
-
- uv add -r requirements.txt
-
-
-Set environment variables
- Create a .env file in the root directory:
+## ⚙️ Setup
 
 GROQ_API_KEY=your_groq_api_key_here
 LANGSMITH_API_KEY=your_langsmith_api_key_here
 
-
-Install extra tools (for development)
-
 uv add langgraph-cli[inmem]
 
-## 📂 Project Structure
+▶️ Usage
 
-blog-generation/
-├── app.py                 # FastAPI entry point
-├── main.py                # Application startup logic
-├── requirements.txt       # Dependencies
-├── langgraph.json         # LangGraph workflow config
-├── uv.lock                # Lock file
-├── pyproject.toml         # Project metadata
-├── src/
-│   ├── graph/
-│   │   └── gbuid.py       # Graph builder & workflow definition
-│   ├── llm/
-│   │   └── groq.py        # Groq LLM integration
-│   ├── node/
-│   │   └── title_cre.py   # Nodes for title/content generation
-│   └── state/
-│       └── state.py       # TypedDict state definitions
-└── README.md
+  Running the API
 
-## 🚀 Running the API
-
-Start the FastAPI server locally:
-
-python app.py
+  python app.py
+  Server runs at: http://localhost:8000
 
 
-Server runs at: http://localhost:8000
+📡 API Endpoint: POST /blogs
 
-## 📡 API Usage
- POST /blogs
+Generate a blog post for a given topic and optional target language.
 
- Generate a blog post for a given topic and optional target language.
+Request
 
- Request:
-
- {
+{
   "topic": "Artificial Intelligence in Healthcare",
   "language": "hindi"   // optional: "hindi", "french", or omit for English
- }
+}
 
+Response
 
-Response:
-
- {
+{
   "data": {
     "blog": {
       "title": "The Future of Healthcare: How AI is Revolutionizing Patient Care",
@@ -102,83 +71,14 @@ Response:
       "current_language": "hindi"
     }
   }
- }
-
-## 🧪 Testing with Postman
-
-Create a new POST request
-http://localhost:8000/blogs
-
-Set headers:
-
-Content-Type: application/json
-
-
-Body (raw JSON):
-
-{
-  "topic": "Climate Change Solutions",
-  "language": "french"
 }
 
 
-Send request → Get translated, AI-generated blog content instantly.
+🧪 Testing with Postman
 
-## 🖼️ Visualize Workflows with LangGraph Studio
-uv add langgraph-cli
-langgraph dev
+Create a new POST request → http://localhost:8000/blogs
 
+Set headers → Content-Type: application/json
 
-Then open http://localhost:3000
- in your browser to visualize and debug workflows.
-
-## 🏗️ Architecture Overview
-
-Workflow Nodes:
-
-Title Creation → Generates engaging titles
-
-Content Generation → Produces detailed blog content
-
-Routing Node → Decides if translation is needed
-
-Translation Node → Translates into target language
-
-State Management:
-Uses BlogState to track:
-
-topic
-
-blog (title & content)
-
-current_language
-
-## 🔧 Customization
-Adding a New Language
-
-In src/graph/gbuid.py:
-
-self.graph.add_node(
-  "spanish_trans",
-  lambda state: self.blog_obj.translation({**state, "current_language": "spanish"})
-)
-
-
-Then update routing logic in title_cre.py.
-
-## 📖 API Documentation
-
-Swagger UI: http://localhost:8000/docs
-
-ReDoc: http://localhost:8000/redoc
-
-## 📜 License
-
-Licensed under the MIT License – see the LICENSE file for details.
-
-## 🤝 Contributions
-
-Contributions are welcome 🎉 — fork the repo, make your changes, and open a PR 🚀
-
-
+Set body →
 
