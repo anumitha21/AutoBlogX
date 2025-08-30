@@ -3,7 +3,7 @@
 A production-ready FastAPI service for generating engaging blog posts. AutoBlogX uses LangGraph for stateful workflows and Groq's high-performance LLMs to create AI-generated blogs with multi-language support out of the box.
 
 ## 🔗 Features
-
+ 
  AI-Powered Blog Generation – Automatically generate high-quality blog posts with titles and well-structured content.
 
  Multi-Language Support – Built-in translation to Hindi and French (easily extendable to other languages).
@@ -179,3 +179,4 @@ Licensed under the MIT License – see the LICENSE file for details.
 ## 🤝 Contributions
 
 Contributions are welcome 🎉 — fork the repo, make your changes, and open a PR 🚀
+
