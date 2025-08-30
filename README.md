@@ -1,7 +1,6 @@
 # 📝 AutoBlogX
 
-A powerful, **production-ready FastAPI service** for generating engaging blog posts.  
-This project leverages **LangGraph** for stateful workflows and **Groq's high-performance LLMs** to deliver AI-generated blogs with **multi-language support** out of the box.
+A powerful, **production-ready FastAPI service** for generating engaging blog posts. This project leverages **LangGraph** for stateful workflows and **Groq's high-performance LLMs** to deliver AI-generated blogs with **multi-language support** out of the box.
 
 ---
 
@@ -103,7 +102,7 @@ Generate a blog post for a given topic and optional target language.
 ```json
 {
   "topic": "Artificial Intelligence in Healthcare",
-  "language": "hindi"
+  "language": "french"
 }
 ```
 
@@ -218,5 +217,6 @@ This project is licensed under the **MIT License** – see the [LICENSE](LICENSE
 
 Contributions are welcome 🎉!  
 Feel free to fork, open issues, and submit PRs 🚀
+
 
 
