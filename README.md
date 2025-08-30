@@ -1,57 +1,64 @@
-📝 AutoBlogX
+# 📝 AutoBlogX
 
-A powerful, production-ready FastAPI service for generating engaging blog posts.
-This project leverages LangGraph for stateful workflows and Groq's high-performance LLMs to deliver AI-generated blogs with multi-language support out of the box.
+A powerful, **production-ready FastAPI service** for generating engaging blog posts.  
+This project leverages **LangGraph** for stateful workflows and **Groq's high-performance LLMs** to deliver AI-generated blogs with **multi-language support** out of the box.
 
-🔗 Features
+---
 
-AI-Powered Blog Generation – Automatically generate high-quality blog posts with titles and well-structured content.
+## 🔗 Features
 
-Multi-Language Support – Built-in translation to Hindi and French (easily extendable to other languages).
+- **AI-Powered Blog Generation** – Automatically generate high-quality blog posts with titles and well-structured content.
+- **Multi-Language Support** – Built-in translation to Hindi and French (easily extendable to other languages).
+- **LangGraph Workflows** – State-based workflow management for better control and modularity.
+- **RESTful API** – Clean, documented FastAPI endpoints for smooth integration.
+- **Postman-Ready** – Standardized JSON responses for quick testing and automation.
+- **Visual Debugging** – LangGraph Studio integration for workflow visualization and debugging.
+- **Markdown-Formatted Output** – Ready-to-publish content for blogs or CMS systems.
 
-LangGraph Workflows – State-based workflow management for better control and modularity.
+---
 
-RESTful API – Clean, documented FastAPI endpoints for smooth integration.
+## 📦 Prerequisites
 
-Postman-Ready – Standardized JSON responses for quick testing and automation.
+- **Python** 3.8+
+- **Groq API Key** – Get yours from [Groq Console](https://console.groq.com)
+- (Optional) **LangSmith API Key** – For observability and tracing
 
-Visual Debugging – LangGraph Studio integration for workflow visualization and debugging.
+---
 
-Markdown-Formatted Output – Ready-to-publish content for blogs or CMS systems.
+## ⚙️ Installation & Setup
 
-📦 Prerequisites
+1. **Clone the repository**
 
-Python 3.8+
-
-Groq API Key – Get yours from Groq Console
-
-(Optional) LangSmith API Key – For observability and tracing
-
-⚙️ Installation & Setup
-
-Clone the repository
-
+```bash
 git clone <your-repo-url>
 cd blog-generation
+```
 
+2. **Install dependencies**
 
-Install dependencies
-
+```bash
 uv add -r requirements.txt
+```
 
+3. **Configure environment variables**  
+Create a `.env` file at the root:
 
-Configure environment variables
-Create a .env file at the root:
-
+```env
 GROQ_API_KEY=your_groq_api_key_here
 LANGSMITH_API_KEY=your_langsmith_api_key_here
+```
 
+4. **Install extra tools for development (optional)**
 
-Install extra tools for development (optional)
-
+```bash
 uv add langgraph-cli[inmem]
+```
 
-📂 Project Structure
+---
+
+## 📂 Project Structure
+
+```
 blog-generation/
 ├── app.py                 # FastAPI entry point
 ├── main.py                # Application startup logic
@@ -69,32 +76,40 @@ blog-generation/
 │   └── state/
 │       └── state.py       # TypedDict state definitions
 └── README.md
+```
 
-🚀 Running the API
+---
+
+## 🚀 Running the API
 
 Start the FastAPI server locally:
 
+```bash
 python app.py
+```
 
+Server will run at:  
+➡️ **http://localhost:8000**
 
-Server will run at:
-➡️ http://localhost:8000
+---
 
-📡 API Usage
+## 📡 API Usage
 
-Endpoint: POST /blogs
+**Endpoint:** `POST /blogs`  
 Generate a blog post for a given topic and optional target language.
 
-Request Example:
+**Request Example:**
 
+```json
 {
   "topic": "Artificial Intelligence in Healthcare",
   "language": "hindi"
 }
+```
 
+**Response Example:**
 
-Response Example:
-
+```json
 {
   "data": {
     "blog": {
@@ -104,88 +119,104 @@ Response Example:
     }
   }
 }
+```
 
-🧪 Testing with Postman
+---
 
-Create a new POST request to:
+## 🧪 Testing with Postman
 
+1. Create a new **POST** request to:
+
+```
 http://localhost:8000/blogs
+```
 
+2. **Set headers:**
 
-Set headers:
-
+```
 Content-Type: application/json
+```
 
+3. **Body (raw JSON):**
 
-Body (raw JSON):
-
+```json
 {
   "topic": "Climate Change Solutions",
   "language": "french"
 }
+```
 
+4. Send request → You’ll receive a translated, AI-generated blog.
 
-Send request → You’ll receive a translated, AI-generated blog.
+---
 
-🖼️ Visualize Workflows with LangGraph Studio
+## 🖼️ Visualize Workflows with LangGraph Studio
 
 Install CLI:
 
+```bash
 uv add langgraph-cli
-
+```
 
 Run:
 
+```bash
 langgraph dev
+```
 
-🏗️ Architecture Overview
+---
 
-Workflow Nodes:
+## 🏗️ Architecture Overview
 
-Title Creation → Generates engaging titles
+**Workflow Nodes:**
 
-Content Generation → Produces full blog content
+- **Title Creation** → Generates engaging titles
+- **Content Generation** → Produces full blog content
+- **Routing Node** → Decides if translation is needed
+- **Translation Node** → Converts content into target language
 
-Routing Node → Decides if translation is needed
+**State Management:**  
+Uses a `BlogState` object to track:
 
-Translation Node → Converts content into target language
+- `topic`
+- `blog` (title & content)
+- `current_language`
 
-State Management:
-Uses a BlogState object to track:
+---
 
-topic
+## 🔧 Customization
 
-blog (title & content)
+**Add a New Language**
 
-current_language
+In `src/graph/gbuid.py`, add:
 
-🔧 Customization
-
-Add a New Language
-
-In src/graph/gbuid.py, add:
-
+```python
 self.graph.add_node(
   "spanish_trans",
   lambda state: self.blog_obj.translation({**state, "current_language": "spanish"})
 )
+```
 
+Then update routing logic in `title_cre.py`.
 
-Then update routing logic in title_cre.py.
+---
 
-📖 API Documentation
+## 📖 API Documentation
 
-Swagger UI: http://localhost:8000/docs
+- **Swagger UI:** [http://localhost:8000/docs](http://localhost:8000/docs)
+- **ReDoc:** [http://localhost:8000/redoc](http://localhost:8000/redoc)
 
-ReDoc: http://localhost:8000/redoc
+---
 
-📜 License
+## 📜 License
 
-This project is licensed under the MIT License – see the LICENSE
- file for details.
+This project is licensed under the **MIT License** – see the [LICENSE](LICENSE) file for details.
 
-🤝 Contributions
+---
 
-Contributions are welcome 🎉!
+## 🤝 Contributions
+
+Contributions are welcome 🎉!  
 Feel free to fork, open issues, and submit PRs 🚀
+
 
